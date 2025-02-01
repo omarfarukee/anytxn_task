@@ -25,18 +25,18 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--red) ;
+  background-color: blue ;
   transition: width 0.3s ease-in-out;
 }
 
 /* Hover state for the border to grow from left to right */
 .nav-item:hover::before {
-  width: 70%;
+  width: 100%;
 }
 
 /* Active link will have the full border by default */
 .active::before {
-  width: 70%;
+  width: 100%;
 }
 
 
@@ -81,3 +81,19 @@ visibility: visible;
 transform: translateY(0);
 transition: opacity 0.5s ease, transform 0.4s ease; /* Remove delay when showing */
 }
+
+
+/* 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-in-out forwards;
+} */
