@@ -56,8 +56,9 @@ export default function PoweringHomeSection2() {
   return (
     <div ref={sectionRef} className="min-h-[110vh] flex justify-center flex-col items-center">
       <div className="w-[1100px] h-[600px] flex items-center ">
-        <div className="w-[50%] ">
-          <p className="text-lg font-bold text-blue-500">
+        <div className="w-[50%] " data-aos="fade-right"
+     data-aos-duration="3000">
+          <p className="text-lg font-bold text-blue-500 tracking-widest">
             POWERING THE FUTURE OF FINANCE
           </p>
           <h1 className="text-6xl mt-5">
@@ -76,7 +77,8 @@ export default function PoweringHomeSection2() {
           </p>
         </div>
 
-        <div className="w-[50%] h-full flex justify-center relative ">
+        <div className="w-[50%] h-full flex justify-center relative " data-aos="fade-left"
+     data-aos-duration="3000"> 
           {/* Background Images (TOP) */}
           <div className="absolute flex">
             <img
