@@ -25,13 +25,13 @@ export default function Navbar() {
 
     return (
         <div
-            className={`fixed flex justify-between px-20 border items-center top-0 w-full z-[100] transition-all duration-300 h-24 ${isScrolled
+            className={`fixed flex justify-between px-20  items-center top-0 w-full z-[100] transition-all duration-300 h-20 ${isScrolled
                     ? 'bg-[#ffffff] shadow-md'
                     : 'bg-transparent'
                 }`}
         >
             <div className=''>
-                <img className='' src={logo1} alt="Logo" />
+                <img className='w-40' src={logo1} alt="Logo" />
             </div>
 
             <div className='flex gap-10'>

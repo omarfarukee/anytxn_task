@@ -1,74 +1,4 @@
-// // eslint-disable-next-line no-unused-vars
-// import React from "react";
-// import women from "../../assets/person/women2.jpg";
-// import bg1 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop3.svg";
-// import bg2 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop4.svg";
-// import bg3 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop3.svg";
-// import bg4 from "../../assets/frames-20250201T092203Z-001/frames/founder/2.svg";
-
-// export default function HomeTop() {
-//     return (
-//         <div className="overflow-hidden relative">
-//             {/* Blue Gradient Background */}
-//             <div
-//                 className="min-h-[100vh] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"
-//                 style={{ clipPath: "polygon(0 0, 79% 0, 37% 100%, 0% 100%)" }}
-//             ></div>
-
-//             {/* 1st Wave Line BG (Now Moved Up) */}
-//             <div className="w-[120vw] h-[100vh] overflow-hidden  absolute top-0  z-50">
-//                 <img
-//                     className="absolute h-full w-full right-[15%] top-0 z-50"
-//                     src={bg1}
-//                     alt=""
-//                 />
-//             </div>
-
-//             <div className="w-[100vw] h-[100vh] overflow-hidden border absolute top-0 border-red-500 z-50">
-//                 <img
-//                     className="absolute h-full w-full right-[35%]  top-0 z-50"
-//                     src={bg2}
-//                     alt=""
-//                 />
-//             </div>
-//             <div className="w-[100vw] h-[100vh] overflow-hidden absolute bottom-[30%] z-50">
-//                 <img
-//                     className="absolute  h-full w-full right-[35%]    top-0 z-50"
-//                     src={bg3}
-//                     alt=""
-//                 />
-//             </div>
-//             <div className="w-[100vw] h-[100vh] overflow-hidden absolute bottom-[30%]  z-50">
-//                 <img
-//                     className="absolute h-full w-full right-[25%]    top-0 z-50"
-//                     src={bg4}
-//                     alt=""
-//                 />
-//             </div>
-//             <div className="w-[200px] h-[100vh] overflow-hidden absolute bottom-[30%] z-50">
-//                 <img
-//                     className="absolute h-full w-full right-[15%]    top-[-8%] z-50"
-//                     src={bg4}
-//                     alt=""
-//                 />
-//             </div>
-            
-
-//             {/* Women Image */}
-//             <img
-//                 src={women}
-//                 className="absolute bottom-0 ml-[25%] top-[-100px] object-cover bg-no-repeat w-full z-10"
-//                 alt=""
-//             />
-
-//             {/* White Polygon Div */}
-//             <div
-//                 className="bg-white z-[50] border w-full absolute bottom-0 h-[300px]"
-//                 style={{ clipPath: "polygon(0 95%, 100% 49%, 100% 100%, 0 100%)" }}
-//             ></div>
-//         </div>
-//     );
-// }
+/* eslint-disable react-hooks/exhaustive-deps */
 
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef } from "react";
@@ -78,48 +8,58 @@ import bg1 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveL
 import bg2 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop4.svg";
 import bg3 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop3.svg";
 import bg4 from "../../assets/frames-20250201T092203Z-001/frames/founder/2.svg";
+import bg5 from "../../assets/frames-20250201T092203Z-001/frames/founder/2.svg";
+import { FaAngleRight } from "react-icons/fa";
 
 export default function HomeTop() {
     const bg1Ref = useRef(null);
     const bg2Ref = useRef(null);
     const bg3Ref = useRef(null);
     const bg4Ref = useRef(null);
+    const bg5Ref = useRef(null);
     const womenRef = useRef(null);
     const containerRef = useRef(null);
 
     useEffect(() => {
-        // Timeline for entrance animations
+        // Set initial positions but keep elements VISIBLE
+        gsap.set(bg1Ref.current, { x: "10%", y: "-10%" }); // Top-right, move down-left
+        gsap.set(bg2Ref.current, { x: "12%", y: "-12%" }); // Top-right, move down-left
+        gsap.set(bg3Ref.current, { x: "-12%", y: "-15%" }); // **Top-left, move down-right**
+        gsap.set(bg4Ref.current, { x: "-14%", y: "-18%" }); // **Top-left, move down-right**
+        gsap.set(bg5Ref.current, { x: "-16%", y: "-20%" }); // **Top-left, move down-right**
+        gsap.set(womenRef.current, { x: "8%" }); // Starts right, moves left
+
+        // Timeline animation
         const tl = gsap.timeline();
 
-        // First animate bg3 and bg4
-        tl.fromTo(
-            [bg3Ref.current, bg4Ref.current],
-            { x: "10%", opacity: 0 },
-            { x: "0%", opacity: 1, duration: 1 }
-        );
+        // **Step 1: Move bg3, bg4, bg5 from top-left to correct position**
+        tl.to([bg3Ref.current, bg4Ref.current, bg5Ref.current], {
+            x: "0%",
+            y: "0%",
+            duration: 3, // **Smoother & slower**
+            ease: "power3.out",
+        });
 
-        // Then animate bg1, bg2, and the women image (after 1 sec delay)
-        tl.fromTo(
+        // **Step 2: Once bg3, bg4, and bg5 reach their positions, start bg1, bg2, and women immediately**
+        tl.to(
             [bg1Ref.current, bg2Ref.current, womenRef.current],
-            { x: "10%", opacity: 0 },
-            { x: "0%", opacity: 1, duration: 1 },
-            "+=1"
+            { x: "0%", y: "0%", duration: 4, ease: "power3.out" },
+            "-=1.2" // **Starts immediately after bg3, bg4, bg5 are nearly done**
         );
 
-        // Mousemove Parallax Effect
+        // Mousemove Parallax Effect (3D Effect)
         const handleMouseMove = (event) => {
             const { clientX, clientY } = event;
             const { innerWidth, innerHeight } = window;
 
-            const moveX = (clientX / innerWidth - 0.5) * 20; // Scale factor for X movement
-            const moveY = (clientY / innerHeight - 0.5) * 20; // Scale factor for Y movement
+            const moveX = (clientX / innerWidth - 0.5) * 30;
+            const moveY = (clientY / innerHeight - 0.5) * 30;
 
-            gsap.to([bg1Ref.current, bg2Ref.current, bg3Ref.current, bg4Ref.current], {
-                x: moveX,
-                y: moveY,
-                duration: 0.5,
-                ease: "power1.out",
-            });
+            gsap.to(bg1Ref.current, { x: -moveX * 0.5, y: moveY * 0.3, duration: 0.5 });
+            gsap.to(bg2Ref.current, { x: -moveX * 0.4, y: moveY * 0.2, duration: 0.5 });
+            gsap.to(bg3Ref.current, { x: moveX * 0.6, y: -moveY * 0.3, duration: 0.5 });
+            gsap.to(bg4Ref.current, { x: moveX * 0.5, y: -moveY * 0.2, duration: 0.5 });
+            gsap.to(bg5Ref.current, { x: moveX * 0.4, y: -moveY * 0.1, duration: 0.5 });
         };
 
         containerRef.current.addEventListener("mousemove", handleMouseMove);
@@ -130,38 +70,64 @@ export default function HomeTop() {
 
     return (
         <div className="overflow-hidden relative" ref={containerRef}>
+
+            <div className="absolute z-[60] right-0  top-0 w-[400px] h-[150px] pointer-events-none overflow-visible">
+                <div className="absolute right-[-30px] top-[-20px] w-[400px] h-[150px] bg-[#1a85ee]  blur-[40px] rounded-full"></div>
+            </div>
+
+
             {/* Blue Gradient Background */}
             <div
                 className="min-h-[100vh] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"
-                style={{ clipPath: "polygon(0 0, 79% 0, 37% 100%, 0% 100%)" }}
-            ></div>
+                style={{ clipPath: "polygon(0 0, 82% 0, 37% 100%, 0% 100%)" }}
+            >
+            </div>
+
+            <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
+                <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
+                    <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
+                        future of finance</h1>
+                    </div>
+                    <div className="overflow-hidden">
+                        <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
+                    </div>
+                    <div className="overflow-hidden">
+                        <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
+                    </div>
+                    
+                </div>
+
+            </div>
 
             {/* Background Images */}
-            <div className="w-[120vw] h-[100vh] absolute top-0 z-50" ref={bg1Ref}>
-                <img className="absolute h-full w-full right-[10%] top-0 z-50" src={bg1} alt="" />
+            <div className="absolute w-[120vw] h-[100vh] top-0 z-30" ref={bg1Ref}>
+                <img className="absolute h-full w-full right-[10%] top-0 z-30" src={bg1} alt="" />
             </div>
-            <div className="w-[100vw] h-[100vh] absolute top-0 z-50" ref={bg2Ref}>
-                <img className="absolute h-full w-full right-[30%] top-0 z-50" src={bg2} alt="" />
+            <div className="absolute w-[100vw] h-[100vh] top-0 z-30" ref={bg2Ref}>
+                <img className="absolute h-full w-full right-[30%] top-0 z-30" src={bg2} alt="" />
             </div>
-            <div className="w-[100vw] h-[100vh] absolute bottom-[30%] z-50" ref={bg3Ref}>
-                <img className="absolute h-full w-full right-[30%] top-0 z-50" src={bg3} alt="" />
+            <div className="absolute w-[100vw] h-[100vh] top-[-30%] z-30" ref={bg3Ref}>
+                <img className="absolute h-full w-full right-[35%] top-0 z-30" src={bg3} alt="" />
             </div>
-            <div className="w-[100vw] h-[100vh] absolute bottom-[30%] z-50" ref={bg4Ref}>
-                <img className="absolute h-full w-full right-[20%] top-0 z-50" src={bg4} alt="" />
+            <div className="absolute w-[100vw] h-[100vh] top-[0%] z-30" ref={bg4Ref}>
+                <img className="absolute h-full w-full right-[20%] top-0 z-30" src={bg4} alt="" />
+            </div>
+            <div className="absolute w-[200px] h-[100vh] overflow-hidden top-[0%] z-30" ref={bg5Ref}>
+                <img className="absolute h-full w-full right-[15%] top-[-8%] z-30" src={bg5} alt="" />
             </div>
 
-            {/* Women Image */}
+            {/* Women Image (Visible but moves left after delay) */}
             <img
                 src={women}
                 ref={womenRef}
-                className="absolute bottom-0 left-[20%] top-[-100px] object-cover bg-no-repeat w-full z-10"
+                className="absolute bottom-0 left-[30%] top-[-100px] object-cover bg-no-repeat w-full z-10"
                 alt=""
             />
 
             {/* White Polygon Div */}
             <div
                 className="bg-white z-[50] w-full absolute bottom-0 h-[300px]"
-                style={{ clipPath: "polygon(0 95%, 100% 49%, 100% 100%, 0 100%)" }}
+                style={{ clipPath: "polygon(0 95%, 100% 60%, 100% 100%, 0 100%)" }}
             ></div>
         </div>
     );
