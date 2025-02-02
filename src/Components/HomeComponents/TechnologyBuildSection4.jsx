@@ -26,7 +26,8 @@ export default function TechnologyBuildSection4() {
             </div>
             {/* Button for slider control start */}
             <div className="flex flex-wrap justify-center">
-                <div className="flex items-center gap-2 absolute font-bold mt-8">
+                <div className="flex items-center gap-2 absolute font-bold mt-8" data-aos="fade-up"
+                    data-aos-duration="3000">
                     <button
                         className={`w-56 h-12 rounded-3xl text-[#0055ec] ${activeSlider === 1 ? "bg-[#b9d9ff] duration-300" : 'text-black hover:bg-[#f5faff] transition-all duration-300'}`}
                         onClick={() => setActiveSlider(1)}
