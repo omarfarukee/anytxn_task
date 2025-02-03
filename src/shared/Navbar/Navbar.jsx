@@ -83,7 +83,7 @@ export default function Navbar() {
                         {/* Submenu */}
                         <div className="submenu">
                             <NavLink
-                                to="/anyCaas"
+                                to="/#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
@@ -93,7 +93,7 @@ export default function Navbar() {
                                 Any Caas
                             </NavLink>
                             <NavLink
-                                to="/anyBaas"
+                                to="/#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
@@ -103,7 +103,7 @@ export default function Navbar() {
                                 Any Baas
                             </NavLink>
                             <NavLink
-                                to="/anyPaas"
+                                to="/#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
@@ -147,34 +147,34 @@ export default function Navbar() {
                         {/* Submenu */}
                         <div className="submenu">
                             <NavLink
-                                to="/shop/formal"
+                                to="#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
                                         : "text-black submenu-item"
                                 }
                             >
-                                a
+                                English
                             </NavLink>
                             <NavLink
-                                to="/shop/sports"
+                                to="#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
                                         : "text-black submenu-item"
                                 }
                             >
-                                b
+                                Thai
                             </NavLink>
                             <NavLink
-                                to="/shop/sneakers"
+                                to="#"
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-red submenu-item"
                                         : "text-black submenu-item"
                                 }
                             >
-                                c
+                                Bengali
 
                             </NavLink>
                         </div>
