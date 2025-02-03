@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import logo1 from "../../assets/logo/logo2.webp"
 import logo2 from "../../assets/logo/logo1.svg"
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useLocation } from 'react-router';
 import { GoChevronDown } from 'react-icons/go';
 import { TbWorld } from 'react-icons/tb';
 import { FaAngleRight } from 'react-icons/fa';
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const location = useLocation(); // Get current route
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 30);
@@ -24,13 +24,17 @@ export default function Navbar() {
         };
     }, []);
     
+        // Set navbar background based on route
+        const getNavbarBackground = () => {
+            if (location.pathname === "/services") {
+                return "bg-blue-500"; // Blue when on "/services"
+            }
+            return isScrolled ? "bg-[#ffffff] shadow-md h-[100px]" : "bg-transparent"; // Default behavior
+        };
 
     return (
         <div
-            className={`fixed flex  justify-between px-32  items-center top-0 w-full z-[100] transition-all duration-300 h-20 ${isScrolled
-                ? 'bg-[#ffffff] shadow-md h-[100px]'
-                : 'bg-transparent'
-                }`}
+            className={`fixed flex  justify-between px-32  items-center top-0 w-full z-[100] transition-all duration-300 h-20 ${getNavbarBackground()}`}
         >
             <Link to="/">
                 <div className=''>
