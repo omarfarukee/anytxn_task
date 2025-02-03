@@ -6,6 +6,7 @@ import OurPhilosophySection3 from './OurPhilosophySection3'
 import TechnologyBuildSection4 from './TechnologyBuildSection4'
 import TrustedBySection5 from './TrustedBySection5'
 import LegacySection6 from './LegacySection6'
+import Footer from '../../shared/Footer/Footer'
 
 export default function HomeMain() {
   return (
@@ -16,6 +17,7 @@ export default function HomeMain() {
     <TechnologyBuildSection4/>
     <TrustedBySection5/>
     <LegacySection6/>
+    <Footer/>
    </main>
   )
 }

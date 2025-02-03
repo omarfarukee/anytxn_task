@@ -21,52 +21,58 @@ export default function HomeTop() {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        // Set initial positions but keep elements VISIBLE
-        gsap.set(bg1Ref.current, { x: "10%", y: "-10%" }); // Top-right, move down-left
-        gsap.set(bg2Ref.current, { x: "12%", y: "-12%" }); // Top-right, move down-left
-        gsap.set(bg3Ref.current, { x: "-12%", y: "-15%" }); // **Top-left, move down-right**
-        gsap.set(bg4Ref.current, { x: "-14%", y: "-18%" }); // **Top-left, move down-right**
-        gsap.set(bg5Ref.current, { x: "-16%", y: "-20%" }); // **Top-left, move down-right**
-        gsap.set(womenRef.current, { x: "8%" }); // Starts right, moves left
-
-        // Timeline animation
-        const tl = gsap.timeline();
-
-        // **Step 1: Move bg3, bg4, bg5 from top-left to correct position**
+        let animationComplete = false; // Prevent mousemove before animation ends
+    
+        // Set initial positions
+        gsap.set(bg1Ref.current, { x: "10%", y: "-10%" });
+        gsap.set(bg2Ref.current, { x: "12%", y: "-12%" });
+        gsap.set(bg3Ref.current, { x: "-12%", y: "-15%" });
+        gsap.set(bg4Ref.current, { x: "-14%", y: "-18%" });
+        gsap.set(bg5Ref.current, { x: "-16%", y: "-20%" });
+        gsap.set(womenRef.current, { x: "8%" });
+    
+        // Timeline for intro animation
+        const tl = gsap.timeline({
+            onComplete: () => { animationComplete = true; } // Enable 3D effect after animation
+        });
+    
         tl.to([bg3Ref.current, bg4Ref.current, bg5Ref.current], {
             x: "0%",
             y: "0%",
-            duration: 3, // **Smoother & slower**
+            duration: 2,
             ease: "power3.out",
-        });
-
-        // **Step 2: Once bg3, bg4, and bg5 reach their positions, start bg1, bg2, and women immediately**
-        tl.to(
-            [bg1Ref.current, bg2Ref.current, womenRef.current],
-            { x: "0%", y: "0%", duration: 4, ease: "power3.out" },
-            "-=1.2" // **Starts immediately after bg3, bg4, bg5 are nearly done**
-        );
-
+        })
+        .to([bg1Ref.current, bg2Ref.current, womenRef.current], {
+            x: "0%",
+            y: "0%",
+            duration: 2.5,
+            ease: "power3.out",
+        }, "-=1.2");
+    
         // Mousemove Parallax Effect (3D Effect)
         const handleMouseMove = (event) => {
+            if (!animationComplete) return; // Ignore mousemove until animation is done
+    
             const { clientX, clientY } = event;
             const { innerWidth, innerHeight } = window;
-
+    
             const moveX = (clientX / innerWidth - 0.5) * 30;
             const moveY = (clientY / innerHeight - 0.5) * 30;
-
+    
             gsap.to(bg1Ref.current, { x: -moveX * 0.5, y: moveY * 0.3, duration: 0.5 });
             gsap.to(bg2Ref.current, { x: -moveX * 0.4, y: moveY * 0.2, duration: 0.5 });
             gsap.to(bg3Ref.current, { x: moveX * 0.6, y: -moveY * 0.3, duration: 0.5 });
             gsap.to(bg4Ref.current, { x: moveX * 0.5, y: -moveY * 0.2, duration: 0.5 });
             gsap.to(bg5Ref.current, { x: moveX * 0.4, y: -moveY * 0.1, duration: 0.5 });
         };
-
+    
         containerRef.current.addEventListener("mousemove", handleMouseMove);
+    
         return () => {
             containerRef.current.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
+    
 
     return (
         <div className="overflow-hidden relative" ref={containerRef}>
@@ -84,6 +90,20 @@ export default function HomeTop() {
             </div>
 
             <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
+                <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
+                    <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
+                        future of finance</h1>
+                    </div>
+                    <div className="overflow-hidden">
+                        <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
+                    </div>
+                    <div className="overflow-hidden">
+                        <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
+                    </div>
+                    
+                </div>
+
+            </div>    <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
                 <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
                     <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
                         future of finance</h1>
