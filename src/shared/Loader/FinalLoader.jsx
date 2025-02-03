@@ -4,7 +4,7 @@ import { RiLoader3Line } from "react-icons/ri";
 const FinalLoader = () => {
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white backdrop-blur-sm">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-white backdrop-blur-sm">
             <div className=" flex flex-col items-center text-blue-600">
                 <RiLoader3Line className="text-9xl floats-animation mr-4 animate-spin" />
 
