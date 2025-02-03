@@ -39,7 +39,7 @@ export default function HomeTop() {
         tl.to([bg3Ref.current, bg4Ref.current, bg5Ref.current], {
             x: "0%",
             y: "0%",
-            duration: 2,
+            duration: 3,
             ease: "power3.out",
         })
         .to([bg1Ref.current, bg2Ref.current, womenRef.current], {
@@ -59,11 +59,11 @@ export default function HomeTop() {
             const moveX = (clientX / innerWidth - 0.5) * 30;
             const moveY = (clientY / innerHeight - 0.5) * 30;
     
-            gsap.to(bg1Ref.current, { x: -moveX * 0.5, y: moveY * 0.3, duration: 0.5 });
-            gsap.to(bg2Ref.current, { x: -moveX * 0.4, y: moveY * 0.2, duration: 0.5 });
-            gsap.to(bg3Ref.current, { x: moveX * 0.6, y: -moveY * 0.3, duration: 0.5 });
-            gsap.to(bg4Ref.current, { x: moveX * 0.5, y: -moveY * 0.2, duration: 0.5 });
-            gsap.to(bg5Ref.current, { x: moveX * 0.4, y: -moveY * 0.1, duration: 0.5 });
+            gsap.to(bg1Ref.current, { x: -moveX * 0.8, y: moveY * 0.3, duration: 0.5 });
+            gsap.to(bg2Ref.current, { x: -moveX * 0.6, y: moveY * 0.2, duration: 0.5 });
+            gsap.to(bg3Ref.current, { x: moveX * 0.8, y: -moveY * 0.3, duration: 0.5 });
+            gsap.to(bg4Ref.current, { x: moveX * 0.7, y: -moveY * 0.2, duration: 0.5 });
+            gsap.to(bg5Ref.current, { x: moveX * 0.6, y: -moveY * 0.1, duration: 0.5 });
         };
     
         containerRef.current.addEventListener("mousemove", handleMouseMove);

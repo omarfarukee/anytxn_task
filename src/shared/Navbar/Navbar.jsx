@@ -2,26 +2,28 @@
 import React, { useState, useEffect } from 'react';
 import logo1 from "../../assets/logo/logo2.webp"
 import logo2 from "../../assets/logo/logo1.svg"
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { GoChevronDown } from 'react-icons/go';
 import { TbWorld } from 'react-icons/tb';
 import { FaAngleRight } from 'react-icons/fa';
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
 
-    // Effect to handle scroll
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 30) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
+            setIsScrolled(window.scrollY > 30);
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+        
+        // Cleanup function to remove the event listener safely
+        return () => {
+            if (handleScroll) {
+                window.removeEventListener('scroll', handleScroll);
             }
         };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window?.removeEventListener('scroll', handleScroll);
     }, []);
+    
 
     return (
         <div
@@ -30,14 +32,14 @@ export default function Navbar() {
                 : 'bg-transparent'
                 }`}
         >
-            <div className=''>
+            <Link to="/">
                 <div className=''>
                     <img className={`  ${isScrolled ? "w-40 block" : "w-40 hidden"}`} src={logo2} alt="Logo" />
                 </div>
                 <div className=''>
                     <img className={` ${isScrolled ? "w-40 hidden" : "w-40 block"}`} src={logo1} alt="Logo" />
                 </div>
-            </div>
+            </Link>
 
 
             <div className='flex gap-10'>
@@ -54,34 +56,34 @@ export default function Navbar() {
                     {/* Submenu */}
                     <div className="submenu">
                         <NavLink
-                            to="/shop/formal"
+                            to="/anyCaas"
                             className={({ isActive }) =>
                                 isActive
                                     ? "text-red submenu-item"
                                     : "text-black submenu-item"
                             }
                         >
-                            Men Formal
+                            Any Caas
                         </NavLink>
                         <NavLink
-                            to="/shop/sports"
+                            to="/anyBaas"
                             className={({ isActive }) =>
                                 isActive
                                     ? "text-red submenu-item"
                                     : "text-black submenu-item"
                             }
                         >
-                            Men Sports
+                            Any Baas
                         </NavLink>
                         <NavLink
-                            to="/shop/sneakers"
+                            to="/anyPaas"
                             className={({ isActive }) =>
                                 isActive
                                     ? "text-red submenu-item"
                                     : "text-black submenu-item"
                             }
                         >
-                            Men Sneakers
+                           Any Paas
 
                         </NavLink>
                     </div>
