@@ -11,7 +11,7 @@ export default function TechnologyBuildSection4() {
     useEffect(() => {
         const interval = setTimeout(() => {
             setActiveSlider((prev) => (prev === 4 ? 1 : prev + 1));
-        }, 1000000);
+        }, 5000);
 
         // Cleanup the interval
         return () => clearTimeout(interval);
