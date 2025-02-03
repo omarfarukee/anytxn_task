@@ -69,7 +69,7 @@ export default function HomeTop() {
         containerRef.current.addEventListener("mousemove", handleMouseMove);
     
         return () => {
-            containerRef.current.removeEventListener("mousemove", handleMouseMove);
+            containerRef.current?.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
     
