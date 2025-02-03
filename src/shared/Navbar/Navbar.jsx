@@ -193,9 +193,11 @@ export default function Navbar() {
 
                 {/* Mobile Navbar */}
                 <div className="fixed flex items-center justify-between px-6  bg-[#1f80f0] top-0 w-full z-[100] transition-all duration-300 h-20">
-                    <div>
+                    <NavLink to="/">
+                        <div>
                         <img className="w-32" src={logo1} alt="Logo" />
                     </div>
+                        </NavLink>
                     {/* Toggle Menu Button */}
                     {isOpen ? (
                         <IoMdClose className="text-3xl text-white cursor-pointer" onClick={toggleMenu} />
