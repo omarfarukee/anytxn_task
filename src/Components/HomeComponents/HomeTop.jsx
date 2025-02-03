@@ -9,6 +9,9 @@ import bg2 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveL
 import bg3 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesDesktop3.svg";
 import bg4 from "../../assets/frames-20250201T092203Z-001/frames/founder/2.svg";
 import bg5 from "../../assets/frames-20250201T092203Z-001/frames/founder/2.svg";
+
+import mobileBg1 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/ctaMobileWaveLines.svg";
+import mobileBg2 from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/WaveLinesMobile1.svg";
 import { FaAngleRight } from "react-icons/fa";
 
 export default function HomeTop() {
@@ -19,10 +22,16 @@ export default function HomeTop() {
     const bg5Ref = useRef(null);
     const womenRef = useRef(null);
     const containerRef = useRef(null);
+    // for mobile devices
+    const mobileBg1Ref = useRef(null);
+    const mobileBg2Ref = useRef(null);
+
+
+    const containerMobileRef = useRef(null);
 
     useEffect(() => {
         let animationComplete = false; // Prevent mousemove before animation ends
-    
+
         // Set initial positions
         gsap.set(bg1Ref.current, { x: "10%", y: "-10%" });
         gsap.set(bg2Ref.current, { x: "12%", y: "-12%" });
@@ -30,125 +39,192 @@ export default function HomeTop() {
         gsap.set(bg4Ref.current, { x: "-14%", y: "-18%" });
         gsap.set(bg5Ref.current, { x: "-16%", y: "-20%" });
         gsap.set(womenRef.current, { x: "8%" });
-    
+
         // Timeline for intro animation
         const tl = gsap.timeline({
             onComplete: () => { animationComplete = true; } // Enable 3D effect after animation
         });
-    
+
         tl.to([bg3Ref.current, bg4Ref.current, bg5Ref.current], {
             x: "0%",
             y: "0%",
             duration: 3,
             ease: "power3.out",
         })
-        .to([bg1Ref.current, bg2Ref.current, womenRef.current], {
-            x: "0%",
-            y: "0%",
-            duration: 2.5,
-            ease: "power3.out",
-        }, "-=1.2");
-    
+            .to([bg1Ref.current, bg2Ref.current, womenRef.current], {
+                x: "0%",
+                y: "0%",
+                duration: 2.5,
+                ease: "power3.out",
+            }, "-=1.2");
+
         // Mousemove Parallax Effect (3D Effect)
         const handleMouseMove = (event) => {
             if (!animationComplete) return; // Ignore mousemove until animation is done
-    
+
             const { clientX, clientY } = event;
             const { innerWidth, innerHeight } = window;
-    
+
             const moveX = (clientX / innerWidth - 0.5) * 30;
             const moveY = (clientY / innerHeight - 0.5) * 30;
-    
+
             gsap.to(bg1Ref.current, { x: -moveX * 0.8, y: moveY * 0.3, duration: 0.5 });
             gsap.to(bg2Ref.current, { x: -moveX * 0.6, y: moveY * 0.2, duration: 0.5 });
             gsap.to(bg3Ref.current, { x: moveX * 0.8, y: -moveY * 0.3, duration: 0.5 });
             gsap.to(bg4Ref.current, { x: moveX * 0.7, y: -moveY * 0.2, duration: 0.5 });
             gsap.to(bg5Ref.current, { x: moveX * 0.6, y: -moveY * 0.1, duration: 0.5 });
         };
-    
+
         containerRef.current.addEventListener("mousemove", handleMouseMove);
-    
+
         return () => {
             containerRef.current?.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
-    
+
+
+
+    // for mobile devices
+    useEffect(() => {
+        // Animation on page load
+        gsap.fromTo(mobileBg1Ref.current,
+            { x: "100%", y: "-100%", opacity: 0 },  // Top-right corner
+            { x: "0%", y: "0%", opacity: 1, duration: 2, ease: "power3.out" }
+        );
+        gsap.fromTo(mobileBg2Ref.current,
+            { x: "-100%", y: "-100%", opacity: 0 }, // Top-left corner
+            { x: "0%", y: "0%", opacity: 1, duration: 2, ease: "power3.out" }
+        );
+
+        // Scroll parallax effect
+        const scrollEffect = () => {
+            const scrollY = window.scrollY;
+            gsap.to(mobileBg1Ref.current, { y: -scrollY * 0.15, duration: 0.5, ease: "power3.out" });
+            gsap.to(mobileBg2Ref.current, { y: -scrollY * 0.15, duration: 0.5, ease: "power3.out" });
+        };
+
+        window.addEventListener("scroll", scrollEffect);
+
+        return () => {
+            window.removeEventListener("scroll", scrollEffect);
+        };
+    }, []);
+
 
     return (
-        <div className="overflow-hidden relative" ref={containerRef}>
+        <main>
+            <div className="overflow-hidden relative hidden lg:block" ref={containerRef}>
 
-            <div className="absolute z-[60] right-0  top-0 w-[400px] h-[150px] pointer-events-none overflow-visible">
-                <div className="absolute right-[-30px] top-[-20px] w-[400px] h-[150px] bg-[#1a85ee]  blur-[40px] rounded-full"></div>
-            </div>
-
-
-            {/* Blue Gradient Background */}
-            <div
-                className="min-h-[100vh] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"
-                style={{ clipPath: "polygon(0 0, 82% 0, 37% 100%, 0% 100%)" }}
-            >
-            </div>
-
-            <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
-                <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
-                    <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
-                        future of finance</h1>
-                    </div>
-                    <div className="overflow-hidden">
-                        <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
-                    </div>
-                    <div className="overflow-hidden">
-                        <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
-                    </div>
-                    
+                <div className="absolute z-[60] right-0  top-0 w-[400px] h-[150px] pointer-events-none overflow-visible">
+                    <div className="absolute right-[-30px] top-[-20px] w-[400px] h-[150px] bg-[#1a85ee]  blur-[40px] rounded-full"></div>
                 </div>
 
-            </div>    <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
-                <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
-                    <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
-                        future of finance</h1>
-                    </div>
-                    <div className="overflow-hidden">
-                        <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
-                    </div>
-                    <div className="overflow-hidden">
-                        <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
-                    </div>
-                    
+
+                {/* Blue Gradient Background */}
+                <div
+                    className="min-h-[100vh] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"
+                    style={{ clipPath: "polygon(0 0, 82% 0, 37% 100%, 0% 100%)" }}
+                >
                 </div>
 
+                <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
+                    <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
+                        <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
+                            future of finance</h1>
+                        </div>
+                        <div className="overflow-hidden">
+                            <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
+                        </div>
+                        <div className="overflow-hidden">
+                            <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
+                        </div>
+
+                    </div>
+
+                </div>    <div className="z-[70] absolute top-0 h-[100vh] w-[60%] flex items-end justify-end ">
+                    <div className="flex flex-col items-start  h-screen pt-[20%] pr-5">
+                        <div className="overflow-hidden"><h1 className="text-[85px] leading-none  text-white animate__animated animate__fadeInUp">Embrace the <br />
+                            future of finance</h1>
+                        </div>
+                        <div className="overflow-hidden">
+                            <p className="w-[600px] mt-5 text-white font-bold animate__animated animate__fadeInUp">Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation</p>
+                        </div>
+                        <div className="overflow-hidden">
+                            <button className="w-56 animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-4 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Reach Out to us <p><FaAngleRight /></p> </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {/* Background Images */}
+                <div className="absolute w-[120vw] h-[100vh] top-0 z-30" ref={bg1Ref}>
+                    <img className="absolute h-full w-full right-[10%] top-0 z-30" src={bg1} alt="" />
+                </div>
+                <div className="absolute w-[100vw] h-[100vh] top-0 z-30" ref={bg2Ref}>
+                    <img className="absolute h-full w-full right-[30%] top-0 z-30" src={bg2} alt="" />
+                </div>
+                <div className="absolute w-[100vw] h-[100vh] top-[-30%] z-30" ref={bg3Ref}>
+                    <img className="absolute h-full w-full right-[35%] top-0 z-30" src={bg3} alt="" />
+                </div>
+                <div className="absolute w-[100vw] h-[100vh] top-[0%] z-30" ref={bg4Ref}>
+                    <img className="absolute h-full w-full right-[20%] top-0 z-30" src={bg4} alt="" />
+                </div>
+                <div className="absolute w-[200px] h-[100vh] overflow-hidden top-[0%] z-30" ref={bg5Ref}>
+                    <img className="absolute h-full w-full right-[15%] top-[-8%] z-30" src={bg5} alt="" />
+                </div>
+
+                {/* Women Image (Visible but moves left after delay) */}
+                <img
+                    src={women}
+                    ref={womenRef}
+                    className="absolute bottom-0 left-[30%] top-[-100px] object-cover bg-no-repeat w-full z-10"
+                    alt=""
+                />
+
+                {/* White Polygon Div */}
+                <div
+                    className="bg-white z-[50] w-full absolute bottom-0 h-[300px]"
+                    style={{ clipPath: "polygon(0 95%, 100% 60%, 100% 100%, 0 100%)" }}
+                ></div>
             </div>
 
-            {/* Background Images */}
-            <div className="absolute w-[120vw] h-[100vh] top-0 z-30" ref={bg1Ref}>
-                <img className="absolute h-full w-full right-[10%] top-0 z-30" src={bg1} alt="" />
-            </div>
-            <div className="absolute w-[100vw] h-[100vh] top-0 z-30" ref={bg2Ref}>
-                <img className="absolute h-full w-full right-[30%] top-0 z-30" src={bg2} alt="" />
-            </div>
-            <div className="absolute w-[100vw] h-[100vh] top-[-30%] z-30" ref={bg3Ref}>
-                <img className="absolute h-full w-full right-[35%] top-0 z-30" src={bg3} alt="" />
-            </div>
-            <div className="absolute w-[100vw] h-[100vh] top-[0%] z-30" ref={bg4Ref}>
-                <img className="absolute h-full w-full right-[20%] top-0 z-30" src={bg4} alt="" />
-            </div>
-            <div className="absolute w-[200px] h-[100vh] overflow-hidden top-[0%] z-30" ref={bg5Ref}>
-                <img className="absolute h-full w-full right-[15%] top-[-8%] z-30" src={bg5} alt="" />
+            {/*  mobile view */}
+            <div ref={containerMobileRef} className="relative overflow-hidden lg:hidden block">
+                <div className="h-[700px] w-full bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20 pt-16">
+                    {/* Background Images */}
+                    <div>
+                        <img ref={mobileBg2Ref} src={mobileBg2} className="absolute w-full h-auto" alt="Mobile Background 2" />
+                        <img ref={mobileBg1Ref} src={mobileBg1} className="absolute w-full h-auto" alt="Mobile Background 1" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="h-[80%] flex flex-col items-center justify-center px-4 mt-14 z-[70] relative">
+                        <h1 className="text-6xl leading-[70px] font-semibold text-white ">
+                            Embrace <br /> the future of finance
+                        </h1>
+                        <p className="text-white mt-3 ">
+                            Reimagine financial services with AnyTech’s open platform, distributed banking solution that powers transformation
+                        </p>
+                        <button className="w-full  animate__animated animate__fadeInUp flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-8 py-3 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">
+                            Reach Out to us <p><FaAngleRight /></p>
+                        </button>
+                    </div>
+
+                    
+
+                </div>
+                <div className="relative bottom-20 z-50 ">
+                    <img src={women} 
+                    style={{clipPath: "polygon(0 19%, 100% 0, 100% 83%, 0 100%)"}}
+                className="" alt="" />
+                </div>
+                
             </div>
 
-            {/* Women Image (Visible but moves left after delay) */}
-            <img
-                src={women}
-                ref={womenRef}
-                className="absolute bottom-0 left-[30%] top-[-100px] object-cover bg-no-repeat w-full z-10"
-                alt=""
-            />
+        </main>
 
-            {/* White Polygon Div */}
-            <div
-                className="bg-white z-[50] w-full absolute bottom-0 h-[300px]"
-                style={{ clipPath: "polygon(0 95%, 100% 60%, 100% 100%, 0 100%)" }}
-            ></div>
-        </div>
+
+
     );
 }

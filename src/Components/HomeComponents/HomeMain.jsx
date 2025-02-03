@@ -7,23 +7,33 @@ import TechnologyBuildSection4 from './TechnologyBuildSection4'
 import TrustedBySection5 from './TrustedBySection5'
 import LegacySection6 from './LegacySection6'
 import Footer from '../../shared/Footer/Footer'
-import useLoader from '../../shared/Loader/Loader'
-import FinalLoader from '../../shared/Loader/FinalLoader'
+// import useLoader from '../../shared/Loader/Loader'
+// import FinalLoader from '../../shared/Loader/FinalLoader'
 
 export default function HomeMain() {
-  const { loading, online } = useLoader();
-  if (loading || !online) {
-    return <FinalLoader />;
-  }
+  // const { loading, online } = useLoader();
+  // if (loading || !online) {
+  //   return <FinalLoader />;
+  // }
   return (
    <main>
-    <HomeTop/>
+
+    
+      <HomeTop/>
+      
     <PoweringHomeSection2/>
+    
     <OurPhilosophySection3/>
+    
     <TechnologyBuildSection4/>
+   
     <TrustedBySection5/>
+   
     <LegacySection6/>
-    <Footer/>
+  
+    <Footer/> 
+  
+   
    </main>
   )
 }

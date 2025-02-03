@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import bg from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/bg.avif"
+import bgMobile from "../../assets/backgrounds-20250201T092151Z-001/backgrounds/mb.png"
 import { FaDiagramProject } from 'react-icons/fa6'
 import { FaLightbulb } from 'react-icons/fa'
 import { HiCpuChip } from 'react-icons/hi2'
@@ -11,14 +12,18 @@ export default function OurPhilosophySection3() {
                 <div className='flex flex-col justify-center items-center'>
                     <p className='tracking-widest font-bold text-blue-500' data-aos="fade-up"
                         data-aos-duration="1000">OUR PHILOSOPHY</p>
-                    <h1 className='text-6xl mt-5' data-aos="fade-up"
+                    <h1 className='lg:text-6xl text-3xl mt-5 text-center font-semibold' data-aos="fade-up"
                         data-aos-duration="2000">Human-centred innovation</h1>
                 </div>
 
             </div>
             <div className='flex justify-center mt-10 mb-10'>
                 <img data-aos="fade-up"
-                    data-aos-duration="3000" className='w-[1100px] rounded-3xl' src={bg} alt="" />
+                    data-aos-duration="3000" className='w-[1100px] hidden lg:block rounded-3xl' src={bg} alt="" />
+                  <div className='px-4'>
+                    <img data-aos="fade-up"
+                    data-aos-duration="3000" src={bgMobile} className='block lg:hidden ' alt="" />
+                    </div>  
             </div>
 
             {/* 3 cards  */}

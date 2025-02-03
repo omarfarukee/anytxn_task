@@ -18,6 +18,7 @@ import logo12 from "../../assets/logo/logo14.webp"
 import logo13 from "../../assets/logo/logo15.webp"
 import logo14 from "../../assets/logo/logo16.webp"
 import logo15 from "../../assets/logo/logo17.webp"
+import Marquee from 'react-fast-marquee'
 export default function TrustedBySection5() {
     const [counterOn, setCounterOn] = useState(false)
   return (
@@ -32,25 +33,25 @@ export default function TrustedBySection5() {
                         data-aos-duration="2000">
             <ScrollTrigger onEnter={() => setCounterOn(true)}>
                             {counterOn &&
-                                <div className="flex flex-wrap gap-20 justify-center mt-10">
-                                    <div className="flex flex-col items-center">
+                                <div className="flex flex-wrap gap-20 justify-center mt-10 px-3 lg:px-0">
+                                    <div className="flex lg:flex-col justify-center gap-5 items-center w-full border-b lg:border-none lg:w-[200px]">
                                         
-                                   <div className='flex items-center text-blue-600'>
-                                   <FaGreaterThan className='text-6xl'/> <p className="mt-2 text-4xl font-semibold md:text-8xl"><CountUp start={0} end={20} duration={4} delay={0} /></p>
+                                   <div className='flex  items-center text-blue-600'>
+                                   <FaGreaterThan className='lg:text-6xl text-4xl'/> <p className="mt-2 text-6xl font-semibold md:text-8xl"><CountUp start={0} end={20} duration={4} delay={0} /></p>
                                     </div> 
                                         <p className="text-lg font-semibold text-gray-600">Years of Experience</p>
                                     </div>
-                                    <div className="flex flex-col items-center">
+                                    <div className="flex lg:flex-col justify-center gap-5 items-center w-full border-b lg:border-none lg:w-[200px]">
                                         
                                    <div className='flex items-center text-blue-600'>
-                                  <p className="mt-2 text-4xl font-semibold md:text-8xl"><CountUp start={0} end={20} duration={4} delay={0} />+</p>
+                                  <p className="mt-2 text-6xl font-semibold md:text-8xl"><CountUp start={0} end={40} duration={4} delay={0} />+</p>
                                     </div> 
                                         <p className="text-lg font-semibold text-gray-600">Financial Institutions</p>
                                     </div>
-                                    <div className=" flex flex-col items-center">
+                                    <div className=" flex lg:flex-col justify-center gap-5 items-center w-full border-b lg:border-none lg:w-[300px]">
                                         
                                    <div className='flex items-center text-blue-600'>
-                                   <FaGreaterThan className='text-6xl'/> <p className="mt-2 text-4xl font-semibold md:text-8xl"><CountUp start={0} end={200} duration={4} delay={0} />m</p>
+                                   <FaGreaterThan className='lg:text-6xl text-4xl'/> <p className="mt-2 text-6xl font-semibold md:text-8xl"><CountUp start={0} end={200} duration={4} delay={0} />m</p>
                                     </div> 
                                         <p className="text-lg font-semibold text-gray-600">Customers Each</p>
                                     </div>
@@ -60,7 +61,7 @@ export default function TrustedBySection5() {
                         </ScrollTrigger>
             </div>
 
-            <div className='flex justify-center mt-20 mb-20'>
+            <div className='lg:flex justify-center mt-20 mb-20 hidden'>
                 <div className='flex lg:flex-col flex-row justify-between items-center' data-aos="fade-down"
                         data-aos-duration="3000">
                     <div className='lg:w-[1000px] flex flex-wrap justify-between items-center'>
@@ -88,6 +89,58 @@ export default function TrustedBySection5() {
                    
                 </div>
             </div>
+
+            {/* mobile marque */}
+            <div className="w-full mt-56 lg:hidden block">
+                        <Marquee pauseOnHover={true} speed={80} className='mt-4 mb-4'>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img className="" src={logo1} alt="logo1" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo2} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo3} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo4} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo5} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo6} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo7} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo8} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo9} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo10} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo11} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo12} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo13} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo14} alt="logo2" />
+                            </div>
+                            <div className='w-[250px] mr-5 flex justify-center rounded-xl    items-center '>
+                                <img src={logo15} alt="logo2" />
+                            </div>
+
+                        </Marquee>
+                    </div>
     </div>
   )
 }

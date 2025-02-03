@@ -77,21 +77,24 @@ export default function LegacySection6() {
 
   return (
     <div ref={containerRef} className="relative overflow-hidden" onMouseMove={handleMouseMove}>
-      <div className="bg-white z-[50] border absolute w-full h-[300px] -top-20"
-        style={{ clipPath: "polygon(0 17%, 100% 18%, 100% 100%, 0 35%)" }}>
+      <div className="bg-white lg:block hidden z-[50] border absolute w-full h-[300px] -top-20"
+        style={{ clipPath: "polygon(0 17%, 100% 18%, 100% 100%, 0 35%)"}}>
+      </div>
+      <div className="bg-white z-[50] block lg:hidden border absolute w-full h-[320px] -top-20"
+        style={{ clipPath: "polygon(0 0, 100% 0%, 100% 50%, 0 26%)"}}>
       </div>
 
-      <div className="min-h-[80vh] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"></div>
-      <div className="z-[70] absolute bottom-0 h-[400px]  w-[55%] flex items-end justify-end" data-aos="fade-down"
+      <div className="lg:min-h-[80vh] h-[400px] bg-gradient-to-b from-[#005bc4] to-[#1a85ee] relative z-20"></div>
+      <div className="z-[70] absolute bottom-0 lg:h-[400px] items-center lg:w-[55%] flex lg:items-end justify-center lg:justify-end " data-aos="fade-down"
         data-aos-duration="3000">
-        <div className="flex flex-col items-start  h-screen pt-[40%]  ">
-          <div className="overflow-hidden  h-20 font-semibold"><h1 className="text-6xl leading-none  text-white ">Legacy no longer
+        <div className="flex flex-col lg:items-start justify-center items-center text-center lg:text-start lg:h-screen lg:pt-[40%] pb-[100px]">
+          <div className="lg:overflow-hidden  lg:h-20 font-semibold"><h1 className="lg:text-6xl text-3xl leading-none  text-white ">Legacy no longer
           </h1>
           </div>
-          <div className="overflow-hidden">
-            <p className="w-[600px] mt-4 text-white font-bold ">Talk to us to find out how we can transform your organisation for the future</p>
+          <div className="lg:overflow-hidden">
+            <p className="lg:w-[600px] mt-4 text-white font-bold ">Talk to us to find out how we can transform your organisation for the future</p>
           </div>
-          <div className="overflow-hidden">
+          <div className="lg:overflow-hidden">
             <button className="w-48  flex items-center justify-center gap-0 hover:gap-3 transition-all duration-300 mt-2 py-3 rounded-md bg-[#fe8b53] text-white font-bold text-lg shadow-xl">Contact us <p><FaAngleRight /></p> </button>
           </div>
 
